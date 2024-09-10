@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excel Clone</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="title-bar">Book - 1</div>
+        <div class="menu-bar">
+            <div class="File menu-item">File</div>
+            <div class="Home menu-item menu-item-selected">Home</div>
+            <div class="Insert menu-item">Insert</div>
+            <div class="Layout menu-item">Layout</div>
+            <div class="Help menu-item">Help</div>
+        </div>
+        <div class="menu-icon-bar">
+            <div class="material-icons menu-icon icon-cut">content_cut</div>
+            <div class="material-icons menu-icon icon-copy">content_copy</div>
+            <div class="material-icons menu-icon icon-paste">content_paste</div>
+            <div class="material-icons menu-icon icon-bold style-icon">format_bold</div>
+            <div class="material-icons menu-icon icon-italic style-icon">format_italic</div>
+            <div class="material-icons menu-icon icon-underline style-icon">format_underline</div>
+            <select class="selector font-family-selector">
+                <option style="font-family:'Times New Roman', Times, serif" value="Times New Roman">Times New Roman</option>
+                <option style="font-family:Ariel" value="Ariel">Ariel</option>
+                <option style="font-family:Calibri" value="Calibri">Calibri</option>
+                <option style="font-family:Comic Sans MS" value="Comic Sens MS">Comic Sans MS</option>
+                <option style="font-family:Courier New" value="Courier New">Courier New</option>
+                <option style="font-family:Impact" value="Impact">Impact</option>
+                <option style="font-family:Georgia" value="Georgia">Georgia</option>
+                <option style="font-family:Garamond" value="Garamond">Garamond</option>
+                <option style="font-family:Palatino" value="Palatino">Palatino</option>
+                <option style="font-family:Verdana" value="Verdana">Verdana</option>
+            </select>
+            <select class="selector font-size-selector">
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+
+            </select>
+            <div class="material-icons menu-icon icon-align-left selected align-icon">format_align_left</div>
+            <div class="material-icons menu-icon icon-align-center align-icon">format_align_center</div>
+            <div class="material-icons menu-icon icon-align-right align-icon">format_align_right</div>
+            <div class="material-icons menu-icon icon-color-fill">format_color_fill</div>
+            <div class="material-icons menu-icon icon-color-text">format_color_text</div>
+        </div>
+        <div class="formula-bar">
+            <div class="formula-editor selected-cell"></div>
+            <div class="function-sign"></div>
+            <div class="formula-editor formula-input" contenteditable="true"></div>
+        </div>
+        <div class="data-container">
+            <div class="select-all"></div>
+            <div class="column-name-container">
+                <!-- <div class="column-name colID-1" id="colCod-A">A</div>
+                <div class="column-name colID-2" id="colCod-B">B</div> -->
+            </div>
+            <div class="row-name-container">
+                <!-- <div class="row-name" id="rowID-1">A</div>
+                <div class="row-name">B</div> -->
+            </div>
+            <div class="input-cell-container">
+                <!-- <div class="cell-row">
+                    <div class="input-cell codeA" contenteditable="true" id="row-1-col-1" data="code-A"></div>
+                    <div class="input-cell codeB" contenteditable="true"></div>
+                </div>
+                <div class="cell-row">
+                    <div class="input-cell" contenteditable="true"></div>
+                    <div class="input-cell" contenteditable="true"></div>
+                </div> -->
+            </div>
+        </div>
+        <div class="sheet-bar">
+            <div class="scroller">
+                <div class="material-icons icon-left-scroll">arrow_left</div>
+                <div class="material-icons icon-right-scroll">arrow_right</div>
+            </div>
+            <div class="material-icons icon-add">add_circle</div>
+            <div class="sheet-tab-container">
+                <div class="sheet-tab">Sheet 1</div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
