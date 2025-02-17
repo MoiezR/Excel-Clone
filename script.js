@@ -1,3 +1,22 @@
+let defaultProperties = {
+    text: "",
+    "font-weight": "",
+    "font-style": "",
+    "text-decoration": "",
+    "text-align": "left",
+    "background-color": "white",
+    "color": "black",
+    "font-family": "Noto Sans",
+    "font-size": 14
+}
+
+let cellData = {
+    "Sheet1": []
+}
+
+let selectedSheet = "Sheet1";
+let totalSheets = 1;
+
 $(document).ready(function () {
     let cellContainer = $(".input-cell-container");
 
@@ -74,13 +93,27 @@ $(document).ready(function () {
                     $(`#row-${rowId}-col-${colId+1}`).addClass("left-cell-selected");
                 }
             }
-            $(this).addClass("selected");
         }
         else {
             $(".input-cell.selected").removeClass("selected");
-            $(this).addClass("selected");
         }
+        $(this).addClass("selected");
     })
+
+    function changeHeader(ele){
+        let [rowId, colId] = getRowCol(ele);
+        let cellInfo = defaultProperties;
+        if(cellData[selectedSheet][rowId] && cellData[selectedSheet][rowId][rowId]){
+            cellInfo = cellData[selectedSheet][rowId][colId];
+        }
+        cellInfo["font-weight"] ? $(".icon-bold").addClass("selected") : $(".icon-bold").removeClass("selected");
+        cellInfo["font-style"] ? $(".icon-italic").addClass("selected") : $(".icon-italic").removeClass("selected");
+        cellInfo["text-decoration"] ? $(".icon-underline").addClass("selected") : $(".icon-underline").removeClass("selected");
+        let alignment = cellInfo["text-align"];
+        $(".align-icon.selected").removeClass("selected");
+        $(".icon-align-"+alignment).addClass("selected");
+
+    }
 
     $(".input-cell").dblclick(function () {
         $(".input-cell.selected").removeClass("selected");
@@ -110,6 +143,23 @@ function getRowCol(ele) {
 function updateCell(property,value) {
     $(".input-cell.selected").each(function() {
         $(this).css(property,value);
+        let [rowId, colId] = getRowCol(this);
+        if(cellData[selectedSheet][rowId]){
+            if(cellData[selectedSheet][rowId][colId]){
+                cellData[selectedSheet][rowId][colId][property] = value;
+            }
+            else{
+                cellData[selectedSheet][rowId][colId] = {};
+                cellData[selectedSheet][rowId][colId] = {...defaultProperties};
+                cellData[selectedSheet][rowId][colId][property] = value;
+            }
+            if(defaultPossible && (JSON.stringify(cellData[selectedSheet][rowId][colId])==JSON.stringify(defaultProperties))){
+                delete cellData[selectedSheet][rowId][colId];
+                if(Object.keys(cellData[selectedSheet][rowId]).length == 0){
+                    delete selectedSheet[rowId];
+                }
+            }
+        }
     })
 }
 
@@ -134,5 +184,23 @@ $(".icon-underline").click(function() {
         updateCell("text-decoration","");
     } else {
         updateCell("text-decoration","underline");
+    }
+});
+
+$(".icon-align-left").click(function(){
+    if(!$(this).hasClass("selected")){
+        updateCell("text-align", "left", true);
+    }
+});
+
+$(".icon-align-center").click(function(){
+    if(!$(this).hasClass("selected")){
+        updateCell("text-align", "center", true);
+    }
+});
+
+$(".icon-align-right").click(function(){
+    if(!$(this).hasClass("selected")){
+        updateCell("text-align", "right", true);
     }
 });
