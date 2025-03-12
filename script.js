@@ -6,6 +6,7 @@ let defaultProperties = {
     "text-align": "left",
     "background-color": "#ffffff",
     "color": "#000000",
+    
     "font-family": "Noto Sans",
     "font-size": "14px"
 }
